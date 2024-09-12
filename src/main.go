@@ -13,12 +13,20 @@ import (
 
 func main() {
 
+	/*Реализация с GORM
+	dsn := "host=localhost user=postgres password=364678x dbname=postgres port=5432 sslmode=disable"
+	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	db.AutoMigrate(&models.Person{})
+	repo := Repositories.NewGormPersonRepository(db)*/
+
 	connStr := "postgres://postgres:364678x@localhost:5432/postgres?sslmode=disable"
 	db, err := sql.Open("postgres", connStr)
 	defer db.Close()
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	// Автоматическая миграция (создание таблиц)
 
 	repo := Repositories.NewPostgresRepository(db)
 	service := services.NewPersonService(repo)
