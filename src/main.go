@@ -11,6 +11,8 @@ import (
 	"net/http"
 )
 
+//Project Евгений Козлов
+
 func main() {
 
 	/*Реализация с GORM
